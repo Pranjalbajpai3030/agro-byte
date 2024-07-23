@@ -1,0 +1,19 @@
+.home-container {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .content-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  
+  .image-upload-container,
+  .result-section {
+    flex: 1;
+    margin: 10px;
+    box-sizing: border-box;
+  }
+  
