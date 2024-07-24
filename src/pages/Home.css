@@ -30,6 +30,6 @@
 
 @media (max-width: 768px) {
   .logo {
-    width: 80%; /* Adjust as necessary for smaller screens */
+    width: 80%; 
   }
 }

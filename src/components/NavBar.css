@@ -6,22 +6,22 @@
 }
 
 .navbar-custom .navbar-brand {
-  font-family: 'Poppins', sans-serif; /* Use the custom font */
-  font-size: 1.75rem; /* Adjust the font size */
-  font-weight: 600; /* Increase the font weight */
-  color: white; /* Set the text color to white */
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem; 
+  font-weight: 600; 
+  color: white; 
 }
 
 .navbar-custom .navbar-nav .nav-link {
   color: white;
   position: relative;
   padding: 0.5rem 1rem;
-  font-family: 'Poppins', sans-serif; /* Consistent font for links */
+  font-family: 'Poppins', sans-serif; 
 }
 
 .navbar-custom .navbar-nav .nav-link.active,
 .navbar-custom .navbar-nav .nav-link:hover {
-  color: #ecf0f1; /* Light color for active and hover state */
+  color: #ecf0f1; 
 }
 
 .navbar-custom .navbar-nav .nav-link::before {
@@ -31,7 +31,7 @@
   bottom: 0;
   height: 2px;
   width: 0;
-  background-color: #ecf0f1; /* White line */
+  background-color: #ecf0f1; 
   transition: width 0.3s ease;
 }
 
