@@ -1,23 +1,34 @@
-import React from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
+import React, { useState } from 'react';
+import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
-import './MedicineList.css';
+import ImageUpload from '../components/ImageUpload';
+import ResultContainer from '../components/ResultContainer';
+import './Home.css';
 
-const MedicineList = ({ medicines }) => (
-  <div className="medicine-list">
-    {medicines.map((medicine, index) => (
-      <Card key={index} className="medicine-card">
-        <CardContent>
-          <Typography variant="h6">{medicine.name}</Typography>
-          <Typography variant="body2">Dosage: {medicine.dosage}</Typography>
-          <Typography variant="body2">Duration: {medicine.duration}</Typography>
-          <Typography variant="body2">Time: {medicine.time}</Typography>
-          <Typography variant="body2">Use: {medicine.use}</Typography>
-        </CardContent>
-      </Card>
-    ))}
-  </div>
-);
+const Home = () => {
+  const [result, setResult] = useState(null);
 
-export default MedicineList;
+  const handleResult = (data) => {
+    setResult(data);
+  };
+
+  return (
+    <Container className="home-container">
+      <Typography variant="h3" gutterBottom>
+        Cropify: Crop Disease Identification
+      </Typography>
+      <div className="content-container">
+        <div className="image-upload-container">
+          <ImageUpload setResult={handleResult} />
+        </div>
+        <div className="result-section">
+          {result && (
+            <ResultContainer result={result} medicines={result.medicines} />
+          )}
+        </div>
+      </div>
+    </Container>
+  );
+};
+
+export default Home;

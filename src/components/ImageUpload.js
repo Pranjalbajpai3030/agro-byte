@@ -1,42 +1,63 @@
 import React, { useState } from 'react';
+import { uploadImage } from '../services/api';
+import ImageEditor from './ImageEditor';
 import './ImageUpload.css';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 
 const ImageUpload = ({ setResult }) => {
-  const [imagePreview, setImagePreview] = useState(null);
+  const [image, setImage] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setImagePreview(reader.result);
-      };
-      reader.readAsDataURL(file);
+    setImage(file);
+    setPreviewUrl(URL.createObjectURL(file));
+  };
+
+  const handleUpload = async () => {
+    if (image) {
+      const data = await uploadImage(image);
+      setResult(data);
     }
   };
 
-  const handleUploadClick = () => {
-    
-    setResult();
+  const handleEditSave = (croppedImageUrl) => {
+    setPreviewUrl(croppedImageUrl);
+    setIsEditing(false);
+  };
+
+  const handleEditCancel = () => {
+    setIsEditing(false);
   };
 
   return (
-    <div className="image-upload-container">
-      <div className="form">
-        <div className="drop-container">
-          <label className="drop-title">Drop your image here or click to select</label>
-          <input id="file-input" type="file" onChange={handleFileChange} />
+    <Card className="image-upload-card">
+      <CardContent>
+        <div className="image-upload-container">
+          <input type="file" id="file-input" onChange={handleFileChange} />
+          {previewUrl ? (
+            <div className="image-preview">
+              <img src={previewUrl} alt="Preview" />
+            </div>
+          ) : (
+            <div className="image-preview-placeholder">
+              <Typography variant="body1" color="textSecondary">Image Preview</Typography>
+            </div>
+          )}
+          {!isEditing && previewUrl && (
+            <button className="edit-button" onClick={() => setIsEditing(true)}>Edit</button>
+          )}
+          {isEditing ? (
+            <ImageEditor src={previewUrl} onSave={handleEditSave} onCancel={handleEditCancel} />
+          ) : (
+            <button className="upload-button" onClick={handleUpload}>Upload</button>
+          )}
         </div>
-        {imagePreview && (
-          <div className="image-preview">
-            <img src={imagePreview} alt="Preview" />
-          </div>
-        )}
-        <button className="upload-button" onClick={handleUploadClick}>
-          Upload
-        </button>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 };
 

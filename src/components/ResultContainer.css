@@ -6,7 +6,7 @@
   padding: 2rem;
   text-align: left;
   height: calc(100vh - 100px); /* Adjust this based on your layout */
-  overflow-y: auto;
+
 }
 
 .disease-name {
@@ -29,6 +29,7 @@
   border: 2px solid #c3c6ce;
   transition: 0.5s ease-out;
   margin-bottom: 10px;
+  box-shadow: 0 4px 8px #8AAAE5;
 }
 
 .card-details {
@@ -74,4 +75,15 @@
 .card:hover .card-button {
   transform: translate(-50%, 50%);
   opacity: 1;
+}
+
+/* New card style with specific shadow color */
+.card-new {
+  width: 190px;
+  height: 254px;
+  border-radius: 30px;
+  background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+              -15px -15px 30px #ffffff,
+              0 4px 8px #8AAAE5;
 }
