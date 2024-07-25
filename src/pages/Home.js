@@ -34,9 +34,6 @@ const Home = () => {
 
   return (
     <Container className="home-container">
-      <div className="logo-container">
-        <img src={`${process.env.PUBLIC_URL}/logo.png`} alt="Cropify Logo" className="logo" />
-      </div>
       <div className="content-container">
         <div className="image-upload-container">
           <ImageUpload setResult={handleResult} />
